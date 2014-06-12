@@ -118,6 +118,10 @@ module.exports.blueprints = {
   // POST   /foos
   // PUT    /foos/:id?
   // DELETE /foos/:id?
-  pluralize: false
+  pluralize: false,
+
+  // in order to get create messages from the socket.io. 
+  //(This is not recommended, but for this tutorial it's ok)
+     autoWatch: true
 
 };
