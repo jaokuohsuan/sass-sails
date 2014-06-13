@@ -19,7 +19,7 @@ module.exports = {
   	},
   	owner: {
 			model: 'mso'
-	}	
+	  }	
 
   }
 

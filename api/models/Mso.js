@@ -38,13 +38,13 @@ module.exports = {
   	playerControl:{
   		type: 'boolean'
   	},
-  	socialLink:{
+  	social:{
   		collection: 'socialLink',
-		via: 'owner'
+		  via: 'owner'
   	},
-  	promoteLink:{
-  		collection: 'socialLink',
-		via: 'owner'
+  	promote:{
+  		collection: 'promoteLink',
+		  via: 'owner'
   	},
   	ios:{
   		collection: 'appLinkGroup'
