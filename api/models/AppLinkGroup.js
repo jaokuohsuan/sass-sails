@@ -22,7 +22,11 @@ module.exports = {
   	},
   	market:{
   		type: 'array'
-  	}
+  	},
+    
+    owner: {
+      model: 'mso'
+    }
 
   }
 };

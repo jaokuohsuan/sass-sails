@@ -47,10 +47,12 @@ module.exports = {
 		  via: 'owner'
   	},
   	ios:{
-  		collection: 'appLinkGroup'
+  		collection: 'appLinkGroup',
+      via: 'owner'
   	},
   	android:{
-  		collection: 'appLinkGroup'
+  		collection: 'appLinkGroup',
+      via: 'owner'
   	}
 
 
