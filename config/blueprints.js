@@ -122,6 +122,6 @@ module.exports.blueprints = {
 
   // in order to get create messages from the socket.io. 
   //(This is not recommended, but for this tutorial it's ok)
-     autoWatch: true
+  //autoWatch: true
 
 };

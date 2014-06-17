@@ -18,6 +18,9 @@ module.exports = {
   		type: 'string',
   		required: true
   	},
+    icon:{
+      type: 'string'
+    },
   	longDescription:{
   		type: 'string'
   	},
@@ -34,7 +37,7 @@ module.exports = {
   	playeronly:{
   		type: 'boolean'
   	},
- 	//for youtube icon clickable
+ 	  //for youtube icon clickable
   	playerControl:{
   		type: 'boolean'
   	},
