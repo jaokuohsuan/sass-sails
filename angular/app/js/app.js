@@ -15,10 +15,10 @@ angular.module('myApp', [
 	$urlRouterProvider.otherwise('/');
 	$stateProvider
 		.state('home',{
-			url:'/view1',
+			url:'/',
 			views:{
 				'view.main':{
-					templateUrl: 'partials/partial1.html',
+					templateUrl: 'partials/main_home.html',
 					controller: 'MyCtrl1'
 				}
 			}
