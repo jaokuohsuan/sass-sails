@@ -3,6 +3,7 @@ module.exports = function (grunt) {
 		'jst:dev',
 		'less:dev',
 		'sass:dev', 
+		'sass:angular', 
 		'sync:dev',
 		'coffee:dev'
 	]);
