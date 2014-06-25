@@ -69,7 +69,7 @@ module.exports = {
         
         
 
-		req.file(testFildname).upload(_res,function (err, files) {
+		req.file('promote1').upload(_res,function (err, files) {
 			if (err) return res.serverError(err);
 
 			var qqq=req;

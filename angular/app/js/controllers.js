@@ -4,8 +4,8 @@
 
 var myAppControllers = angular.module('myApp.controllers', []);
 
-myAppControllers.controller('MyCtrl1', ['$scope', '$sails', '$filter',
-  function($scope, $sails, $filter) {
+myAppControllers.controller('MyCtrl1', ['$scope', '$sails', '$filter', '$http','formDataObject',
+  function($scope, $sails, $filter, $http, formDataObject) {
     ///////////
     $scope.lookup = {};
     $scope.msos = [];
@@ -71,45 +71,82 @@ myAppControllers.controller('MyCtrl1', ['$scope', '$sails', '$filter',
     })();
     ///////////
 
+
+    $scope.updateMsoImg = function() {
+
+      return $http({
+        method: 'POST',
+        url: '../../mso/upload?myname=cms-thumbnail-ratio-1',
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        },
+        data: {
+          file: $scope.promote1
+        },
+        transformRequest: formDataObject
+      }).then(function(result) {
+        console.log(result);
+        return result.data;
+      });
+
+    }
+
+
+
   }
 ]);
 
 myAppControllers.controller('MyCtrl2', [
+
   function() {}
 ]);
+
+
+
+myAppControllers.controller('ImageUploader', ['$scope',
+  function(
+    $scope
+  ) {
+
+
+
+  }
+])
+
+
 // for test UI bootstrap  ...it's work
 myAppControllers.controller('TimepickerDemoCtrl', ['$scope',
   function($scope) {
 
-     $scope.mytime = new Date();
+    $scope.mytime = new Date();
 
-  $scope.hstep = 1;
-  $scope.mstep = 15;
+    $scope.hstep = 1;
+    $scope.mstep = 15;
 
-  $scope.options = {
-    hstep: [1, 2, 3],
-    mstep: [1, 5, 10, 15, 25, 30]
-  };
+    $scope.options = {
+      hstep: [1, 2, 3],
+      mstep: [1, 5, 10, 15, 25, 30]
+    };
 
-  $scope.ismeridian = true;
-  $scope.toggleMode = function() {
-    $scope.ismeridian = ! $scope.ismeridian;
-  };
+    $scope.ismeridian = true;
+    $scope.toggleMode = function() {
+      $scope.ismeridian = !$scope.ismeridian;
+    };
 
-  $scope.update = function() {
-    var d = new Date();
-    d.setHours( 14 );
-    d.setMinutes( 0 );
-    $scope.mytime = d;
-  };
+    $scope.update = function() {
+      var d = new Date();
+      d.setHours(14);
+      d.setMinutes(0);
+      $scope.mytime = d;
+    };
 
-  $scope.changed = function () {
-    console.log('Time changed to: ' + $scope.mytime);
-  };
+    $scope.changed = function() {
+      console.log('Time changed to: ' + $scope.mytime);
+    };
 
-  $scope.clear = function() {
-    $scope.mytime = null;
-  };
+    $scope.clear = function() {
+      $scope.mytime = null;
+    };
 
 
 
