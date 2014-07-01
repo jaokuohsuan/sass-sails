@@ -9,7 +9,8 @@ angular.module('myApp', [
   'myApp.filters',
   'myApp.services',
   'myApp.directives',
-  'myApp.controllers'
+  'myApp.controllers',
+  'angularFileUpload'
 ])
 .config(['$stateProvider', '$urlRouterProvider',function ($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise('/');
@@ -35,6 +36,11 @@ angular.module('myApp', [
 
 		})
 
+	
+}])
+.config(['$httpProvider',function($httpProvider) {
+	$httpProvider.defaults.headers
+		.common["X-Requested-With"]="XMLHttpRequest";
 	
 }]);
 

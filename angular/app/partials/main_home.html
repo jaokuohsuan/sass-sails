@@ -38,14 +38,17 @@
         </div>
         <div class="row">
             <div class="col-md-3">
-                <div class="thumbnail">
-                    
+                <div class="thumbnail">                    
                         <div class="image-upload">
                             <label for="file-input" class="image-label">
                                 <img src="img/app_icon.png" />
                             </label>
-                            <input id="file-input" class="hide-input" type="file" name="promote1" />
+                            <input id="file-input" class="hide-input" type="file" name="avatar" file-input="files"  multiple/>
+
                             <a href="" class="btn btn-primary" ng-click="updateMsoImg()">test</a>
+                            <ol>
+                                <li ng-repeat="file in files">{{file.name}}</li>
+                            </ol>
                         </div>
                     
                     <div class="caption">
@@ -55,8 +58,20 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="thumbnail">
-                    <img src="img/app_icon.png" alt="...">
+                <div class="thumbnail">                    
+                        <div class="image-upload">
+                            <label for="file-input" class="image-label">
+                                <img src="img/app_icon.png" />
+                            </label>
+                             <input type="text" ng-model="myModelObj">
+                             <input type="file" ng-file-select="onFileSelect($files)" multiple>
+
+                            <a href="" class="btn btn-primary">test</a>
+                            <ol>
+                                <li ng-repeat="file in files">{{file.name}}</li>
+                            </ol>
+                        </div>
+                    
                     <div class="caption">
                         <h3>Games Tube</h3>
                         <p><a href="#" class="btn btn-primary" role="button">Button</a> 

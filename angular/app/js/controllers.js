@@ -4,8 +4,9 @@
 
 var myAppControllers = angular.module('myApp.controllers', []);
 
-myAppControllers.controller('MyCtrl1', ['$scope', '$sails', '$filter', '$http','formDataObject',
-  function($scope, $sails, $filter, $http, formDataObject) {
+myAppControllers.controller('MyCtrl1', ['$scope', '$sails', '$filter', '$http', 'formDataObject', '$upload',
+
+  function($scope, $sails, $filter, $http, formDataObject, $upload) {
     ///////////
     $scope.lookup = {};
     $scope.msos = [];
@@ -71,23 +72,81 @@ myAppControllers.controller('MyCtrl1', ['$scope', '$sails', '$filter', '$http','
     })();
     ///////////
 
+    // $scope.filesChange=function(elm){
+    //   $scope.files=elm.files;
+    //   $scope.apply();
+    // }
+
+    $scope.onFileSelect = function($files) {
+      //$files: an array of files selected, each file has name, size, and type.
+      for (var i = 0; i < $files.length; i++) {
+        var file = $files[i];
+        $scope.upload = $upload.upload({
+          url: 'http://localhost:1337/mso/upload?myname=love2', //upload.php script, node.js route, or servlet url
+          method: 'POST',
+          // headers: {'header-key': 'header-value'},
+          // withCredentials: true,
+          data: {
+            myObj: $scope.myModelObj
+          },
+          file: file, // or list of files: $files for html5 only
+          /* set the file formData name ('Content-Desposition'). Default is 'file' */
+          //fileFormDataName: myFile, //or a list of names for multiple files (html5).
+          /* customize how data is added to formData. See #40#issuecomment-28612000 for sample code */
+          //formDataAppender: function(formData, key, val){}
+        }).progress(function(evt) {
+          console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+        }).success(function(data, status, headers, config) {
+          // file is uploaded successfully
+          console.log(data);
+        });
+        //.error(...)
+        //.then(success, error, progress); 
+        //.xhr(function(xhr){xhr.upload.addEventListener(...)})// access and attach any event listener to XMLHttpRequest.
+      }
+      /* alternative way of uploading, send the file binary with the file's content-type.
+       Could be used to upload files to CouchDB, imgur, etc... html5 FileReader is needed. 
+       It could also be used to monitor the progress of a normal http post/put request with large data*/
+      // $scope.upload = $upload.http({...})  see 88#issuecomment-31366487 for sample code.
+    };
+
 
     $scope.updateMsoImg = function() {
 
       return $http({
         method: 'POST',
-        url: '../../mso/upload?myname=cms-thumbnail-ratio-1',
+        url: 'http://localhost:1337/mso/upload?myname=love1',
         headers: {
-          'Content-Type': 'multipart/form-data'
+          // 'Content-Type': 'multipart/form-data'
+          'Content-Type': undefined
         },
+        // file: $scope.files,
         data: {
-          file: $scope.promote1
+          file: $scope.files
         },
+
+
         transformRequest: formDataObject
-      }).then(function(result) {
+        // transformRequest: function(data){return data;}
+      }).success(function(result) {
         console.log(result);
-        return result.data;
+        return result;
       });
+      // var fd= new FormData();
+      // angular.forEach($scope.files,function(file){
+      //   fd.append('file',file);
+      // });
+      // $http.post('http://localhost:1337/mso/upload',fd,
+      // {
+      //   transformRequest: angular.identity,
+      //   header:{'Content-Type': undefined}
+      // })
+      // .success(function(result) {
+      //   console.log(result);
+      //   return result.data;
+      // });
+
+
 
     }
 
@@ -101,17 +160,6 @@ myAppControllers.controller('MyCtrl2', [
   function() {}
 ]);
 
-
-
-myAppControllers.controller('ImageUploader', ['$scope',
-  function(
-    $scope
-  ) {
-
-
-
-  }
-])
 
 
 // for test UI bootstrap  ...it's work

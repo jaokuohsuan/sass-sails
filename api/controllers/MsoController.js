@@ -43,7 +43,7 @@ module.exports = {
 		res.end(
 			'<form action="http://localhost:1337/mso/upload?myname=love" enctype="multipart/form-data" method="post">' +
 			'<input type="text" name="title"><br>' +
-			'<input type="file" name='+testFildname +' multiple="multiple"><br>' +
+			'<input type="file" name="promote1" multiple="multiple"><br>' +
 			'<input type="submit" value="Upload">' +
 			'</form>'+testFildname
 		)
@@ -60,19 +60,18 @@ module.exports = {
 
 
 
-		var qqq=req._readableState;
+
 
 		
         // var tempfiledName=req._fileparser.upstreams[0].fieldName;  //get fieldName
-        var tempfiledName=req._fileparser.upstreams[0].fieldName;  //get fieldName
-		console.log('req=',Object.getOwnPropertyNames(req),'|',req._fileparser.upstreams[0],'??',req._fileparser.textParams,'tempfiledName=',req.url,'===atfer url===',req.params,'@',url.parse(req.url, true),'query=',req.query);
+       // var tempfiledName=req._fileparser.upstreams[0].fieldName;  //get fieldName
+		//console.log('req=',Object.getOwnPropertyNames(req),'|',req._fileparser.upstreams[0],'??',req._fileparser.textParams,'tempfiledName=',req.url,'===atfer url===',req.params,'@',url.parse(req.url, true),'query=',req.query);
         
         
 
-		req.file('promote1').upload(_res,function (err, files) {
+		req.file('file').upload(_res,function (err, files) {
 			if (err) return res.serverError(err);
 
-			var qqq=req;
 
 			res.json({
 				message: files.length + ' file(s) uploaded successfully!',
